@@ -1,0 +1,19 @@
+.navbar{
+    display: flex;
+    margin-top: 16px;
+    justify-content: space-around;
+}
+
+.nav{
+    display: flex;
+    padding: 8px 24px;
+    background-color: #EFECEC;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 200px;
+    align-items: center;
+}
+
+.nav span{
+    margin-left: 8px;
+}

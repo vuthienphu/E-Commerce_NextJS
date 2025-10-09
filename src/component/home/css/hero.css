@@ -1,0 +1,44 @@
+.hero{
+    padding: 50px;
+    background-color: black;
+    max-width: 50%;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 16px;
+    
+}
+
+.hero .content{
+    display: flex;
+    justify-content: space-around;
+   align-items: center;
+}
+
+.hero .text{
+    color: aliceblue;
+    font-size: 60px;
+}
+
+.hero .img{
+    height: 160px;
+    width: 160px;
+}
+
+.hero button{
+    color: aliceblue;
+    border-radius: 10px;
+    background-color: rgb(115, 119, 119);
+    cursor: pointer;
+    display: block;
+}
+
+
+  /* Hiệu ứng mờ dần */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1s;
+  }
+  @keyframes fade {
+    from {opacity: 0.4} 
+    to {opacity: 1}
+  }
