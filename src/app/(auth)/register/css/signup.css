@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+/* Bên trái */
+.left {
+  background: linear-gradient(to top right, #f12711, #f5af19);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 20px;
+   position: relative;
+}
+
+.left img {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+
+.left h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.btn-back{
+    position: absolute;
+     top: 20px;  
+  left: 20px;  
+    background-color: azure;
+    width: 32px;
+   height: 20px;
+   display: flex;
+   justify-content: center;
+   cursor: pointer;
+   border-radius: 8px;
+}
+.btn-back img{
+    width: 16px;
+    height: 16px;
+}
+/* Bên phải */
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+.form-box {
+  width: 80%;
+  max-width: 400px;
+}
+
+.form-box h2 {
+  color: #123e74;
+  margin-bottom: 20px;
+}
+
+.form-box input,
+.form-box button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box; /* đảm bảo không bị lệch */
+}
+
+.form-box input {
+  border: 1px solid #ddd;
+}
+
+
+.signup-btn {
+  border: none;
+  cursor: pointer;
+  background: #123e74;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}

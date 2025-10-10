@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import './css/header.css';
 
 
@@ -69,10 +70,10 @@ return(
                     </svg>
                 </div>
   <div className="sign-up">
-                    <a href="">Sign up</a>
+                  <Link href="/register">Register</Link>
                 </div>
                 <div className="login">
-                    <a href="">Login</a>
+                    <Link href="/login">Login</Link>
                 </div>
 
                 <div className="dowload">
