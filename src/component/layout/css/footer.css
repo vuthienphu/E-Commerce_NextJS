@@ -1,0 +1,32 @@
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột đều nhau */
+  align-items: start; /* căn trên cùng một dòng */
+  text-align: center; /* căn giữa chữ và ảnh */
+}
+
+.btn-payment{
+    margin-top: 12px;
+    display: grid;
+  grid-template-columns: auto auto auto auto auto auto; 
+  
+}
+
+.mt12{
+    margin-top: 12px;
+}
+
+.text{
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.googlepayment, .youtube{
+    width: 24px;
+    height: 24px;
+}
+
+.youtube{
+    margin-left: 4px;
+}
+

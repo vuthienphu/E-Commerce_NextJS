@@ -1,0 +1,11 @@
+.line{
+    width: 96%; 
+    height: 1px; 
+    background-color: black;
+}
+
+.logo-stores{
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-around;
+}
