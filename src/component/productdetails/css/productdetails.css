@@ -1,0 +1,100 @@
+.container{
+margin: 0 auto;
+  width: 1336px;
+  height: 580px;
+  background-color: #F8F3F3;
+ overflow: hidden;      
+}
+
+.productdetails{
+display: flex;
+justify-content: space-around;
+margin-top: 40px ; 
+}
+.price{
+color: red;
+font-size: 40px;
+}
+.original-price{
+display: flex;
+margin-top: 12px;
+}
+.quantity{
+    display: flex;
+    margin-top: 40px;
+}
+
+.ml-24{
+    margin-left: 24px;
+}
+
+.mt-12{
+    margin-top: 12px;
+}
+.quantity button{
+padding: 0px 16px;
+border-radius: 8px;
+background-color: #F0ECEC;
+}
+
+.count-quantity{
+    padding: 0px 16px;
+    background-color: #FFFDFD;
+}
+
+.btn-group{
+    margin-top: 40px;
+}
+
+.btn-group button{
+    padding: 8px 32px;
+    border-radius: 16px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-buy{
+    background-color:#0A92DE ;
+}
+
+.btn-cart{
+    background-color:#E07008 ;
+}
+
+.seller-info {
+    margin-top: 60px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 12px 20px;
+  font-family: Arial, sans-serif;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.seller-col {
+  flex: 1;
+}
+
+.label {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 0;
+}
+
+.seller-name {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 4px;
+  color: #000;
+}
+
+.service-item {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #333;
+}
+

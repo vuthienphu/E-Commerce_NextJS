@@ -3,6 +3,11 @@ display: flex;
 justify-content: space-between;
 align-items:center;
 background: linear-gradient(to bottom, #f97316, #facc15);
+position: fixed;       /* Giữ cố định */
+  top: 0;                /* Dính ở mép trên */
+  left: 0;
+  width: 100%;    
+  z-index: 1000;
 }
 
 .search {

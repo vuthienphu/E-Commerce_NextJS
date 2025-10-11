@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import './css/sellproducts.css';
 import aophong from './img/aophong.webp';
 import danhgia from './img/—Pngtree—5 star rating icon reviews_12584719.jpg';
@@ -43,8 +44,35 @@ const SellProducts = () => {
       <div className="sell-product-list">
         {displayedProducts.map((item, index) => (
           <div key={index} className="sell-product-item">
-            <Image className="img-shirt" src={aophong} alt="Ao" />
-            <span className="info">{item.name}</span>
+           <Link
+              href={{
+                pathname: '/products',
+                query: {
+                  src:'/img/aophong.webp',
+                  name: item.name,
+                  size: item.size,
+                  price: item.price,
+                  priceNotSell: item.priceNotSell,
+                  rateSell: item.rateSell,
+                  countRate: item.countRate,
+                },
+              }}
+            >
+              <Image className="img-shirt" src={aophong} alt="Áo" />
+            </Link>
+           <Link href={{
+                pathname: '/products',
+                query: {
+                  name: item.name,
+                  size: item.size,
+                  price: item.price,
+                  priceNotSell: item.priceNotSell,
+                  rateSell: item.rateSell,
+                  countRate: item.countRate,
+                },
+              }}>
+           <span className="info">{item.name}</span>
+           </Link>
             <span className="size">{item.size}</span>
             <span className="price">{item.price}</span>
             <div className="sell-info">

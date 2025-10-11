@@ -28,7 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <header><Header/></header>
-        {children}
+        <div style={{ marginTop: "200px", marginBottom: "20px" }}>
+          {children}
+        </div>
         <footer><Footer/></footer>
       </body>
     </html>
