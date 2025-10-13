@@ -22,8 +22,8 @@ const SellProducts = () => {
     { name: 'Shirt Formal', size: 'M size...', price: 'Rs.999', priceNotSell: '1700', rateSell: '-41%', countRate: 102 },
   ];
 
-  // danh sách sản phẩm đang hiển thị
   const [displayedProducts, setDisplayedProducts] = useState(products.slice(0, 6));
+
 
   // lấy 6 sản phẩm ngẫu nhiên
   const getRandomProducts = () => {
@@ -63,6 +63,7 @@ const SellProducts = () => {
            <Link href={{
                 pathname: '/products',
                 query: {
+                  src:'/img/aophong.webp',
                   name: item.name,
                   size: item.size,
                   price: item.price,

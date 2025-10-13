@@ -1,7 +1,9 @@
 'use client'
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import './css/productdetails.css';
+import { CartItem } from "@/type/cart";
 interface Prop{
   src?:string;
     name?:string;
@@ -13,20 +15,58 @@ interface Prop{
 }
 
 
+
 const ProductDetails = ({src,name,size,price,priceNotSell,rateSell,countRate}:Prop) =>{
 
-const[count,setCount] = useState<number>(1);
+const[quantity,setQuantity] = useState<number>(1);
+const router = useRouter();
 
-const handleMinus = (count:number)=>{
-  if(count<=1){
+const handleMinus = (quantity:number)=>{
+  if(quantity<=1){
   return;
 }
-setCount(count-1);
+setQuantity(quantity-1);
 
 }
-const handleAdd = (count:number)=>{
-setCount(count+1);
+const handleAdd = (quantity:number)=>{
+setQuantity(quantity+1);
 }
+
+const handleBuyNow = () => {
+    // Gói dữ liệu cần truyền
+    const query = new URLSearchParams({
+      name: name || "",
+      size: size || "",
+      price: price || "",
+      rateSell: rateSell || "",
+      quantity: quantity.toString()
+    }).toString();
+
+    // Điều hướng sang trang /buy
+    router.push(`/buy?${query}`);
+  };
+
+   const handleAddToCart = () => {
+    if (!name) return;
+
+    const newItem = { src, name, size, price, priceNotSell,rateSell,countRate,quantity};
+
+    // lấy giỏ hàng hiện tại từ localStorage
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    // kiểm tra nếu sản phẩm đã tồn tại thì cộng dồn
+    const existingIndex = cart.findIndex((item:CartItem) => item.name === name && item.size === size);
+    if (existingIndex >= 0) {
+      cart[existingIndex].quantity += quantity;
+    } else {
+      cart.push(newItem);
+    }
+
+    // lưu lại vào localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("✅ Sản phẩm đã được thêm vào giỏ hàng!");
+    console.log(cart);
+  };
 return(
   <div className="container">
     <div className="productdetails">
@@ -41,13 +81,13 @@ return(
     </div>
      <div className="quantity">
       <p>Quantity</p>
-      <button className="ml-24" onClick={()=>handleMinus(count)}>-</button>
-      <p className="count-quantity">{count}</p>
-      <button onClick={()=>handleAdd(count)}>+</button>
+      <button className="ml-24" onClick={()=>handleMinus(quantity)}>-</button>
+      <p className="count-quantity">{quantity}</p>
+      <button onClick={()=>handleAdd(quantity)}>+</button>
      </div>
      <div className="btn-group">
-      <button className="btn-buy">Buy Now</button>
-      <button className="ml-24 btn-cart">Add To Cart</button>
+      <button className="btn-buy" onClick={()=>handleBuyNow()}>Buy Now</button>
+      <button className="ml-24 btn-cart" onClick={()=>handleAddToCart()}>Add To Cart</button>
      </div>
 </div>
      </div>

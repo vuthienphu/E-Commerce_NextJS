@@ -1,11 +1,21 @@
+'use client'
+import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 import './css/header.css';
 
 
 const Header = ()=>{
+    const router = useRouter();
+    const handleBackHome = ()=>{
+        router.push("/");
+    }
+
+    const handleCart = ()=>{
+        router.push("/cart")
+    }
 return(
     <div id="header">
-            <div className="logo">
+            <button className="logo" onClick={handleBackHome}>
                 <svg width="158" height="151" viewBox="0 0 158 151" fill="none" xmlns="http://www.w3.org/2000/svg"
                     href="http://www.w3.org/1999/xlink">
                     <rect width="158" height="151" fill="url(#pattern0_8_57)" />
@@ -17,7 +27,7 @@ return(
                         </pattern>
                     </defs>
                 </svg>
-            </div>
+            </button>
 
             <div className="search">
                 <input type="text" placeholder="Search"/>
@@ -32,7 +42,7 @@ return(
                 </svg>
             </div>
             <div className="link">
-                <div className="cart">
+                <button className="cart" onClick={()=>handleCart()}>
                     <svg className="icon-cart" width="30" height="30" viewBox="0 0 49 52" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <g filter="url(#filter0_d_8_71)">
@@ -68,7 +78,7 @@ return(
                             </filter>
                         </defs>
                     </svg>
-                </div>
+                </button>
   <div className="sign-up">
                   <Link href="/register">Register</Link>
                 </div>

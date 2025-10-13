@@ -10,6 +10,13 @@ position: fixed;       /* Giữ cố định */
   z-index: 1000;
 }
 
+.logo,.cart{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
 .search {
   position: relative;
 }
