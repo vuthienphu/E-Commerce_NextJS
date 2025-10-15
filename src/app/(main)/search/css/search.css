@@ -1,0 +1,311 @@
+/* ========================= */
+/*   SEARCH PAGE STYLING     */
+/* ========================= */
+
+.search-container {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.search-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Sort section */
+.sort-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-section label {
+  font-size: 14px;
+  color: #555;
+}
+
+.sort-section select {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.sort-section select:hover {
+  border-color: #ff6600;
+  box-shadow: 0 0 3px rgba(255, 102, 0, 0.25);
+}
+
+/* Layout chia cột */
+.search-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  height: fit-content;
+}
+
+/* ---- Category panel (mới) ---- */
+.category-panel {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.category-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+/* category search input nhỏ gọn */
+.category-search-wrap {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.category-search {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 13px;
+  outline: none;
+}
+
+.category-search:focus {
+  border-color: #ff6600;
+  box-shadow: 0 0 4px rgba(255, 102, 0, 0.15);
+}
+
+/* danh sách category dài (kiểu giống ảnh) */
+.category-list {
+  max-height: 330px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* mỗi dòng category */
+.category-item-wrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 6px 2px;
+}
+
+/* nút chính cho category */
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.08s;
+  color: #5b5b5b;
+  font-size: 13px;
+}
+
+.category-item:hover {
+  background: rgba(255, 102, 0, 0.06);
+  transform: translateY(-1px);
+  color: #333;
+}
+
+/* active state */
+.category-item.active {
+  background: linear-gradient(90deg, rgba(255,102,0,0.12), rgba(255,102,0,0.06));
+  border-left: 3px solid #ff6600;
+  padding-left: 8px;
+  color: #ff6600;
+  font-weight: 600;
+}
+
+/* tên và số lượng */
+.category-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+  display: inline-block;
+}
+
+.category-count {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* nút expand nhỏ dọc bên cạnh */
+.category-expand {
+  position: absolute;
+  right: 6px;
+  top: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #777;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* children (subcategories) */
+.category-children {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.22s ease, padding 0.18s ease;
+  padding-left: 10px;
+}
+
+.category-children.open {
+  max-height: 240px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.category-sub-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #555;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.category-sub-item input[type='radio'] {
+  width: 14px;
+  height: 14px;
+}
+
+.category-sub-item:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.category-sub-item.active {
+  color: #ff6600;
+  font-weight: 600;
+}
+
+/* ---- Filter sections chung ---- */
+.filter-section {
+  margin: 12px 0;
+  padding: 6px 0;
+}
+
+.filter-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.filter-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-section li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.filter-section input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #ff6600;
+  cursor: pointer;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+
+/* scrollbar nhỏ cho category list */
+.category-list::-webkit-scrollbar {
+  width: 6px;
+}
+.category-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+}
+
+.sell-product-list{
+    display: grid;
+  gap: 4px;
+  grid-template-columns: auto auto auto auto auto auto;
+  
+}
+
+.sell-product-item{
+    width: 168px;
+    height: 290px;
+   border: #000000 1px solid;
+    background-color: #FBF7F7;
+    border-radius: 8px;
+     display: flex;
+  flex-direction: column;   
+  justify-content: center;  
+  align-items: center;      
+  text-align: center;  
+    margin-top: 8px;
+}
+
+
+.price{
+color: red;
+font-size: 20px;
+}

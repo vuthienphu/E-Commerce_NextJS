@@ -22,18 +22,11 @@ const SellProducts = () => {
     { name: 'Shirt Formal', size: 'M size...', price: 'Rs.999', priceNotSell: '1700', rateSell: '-41%', countRate: 102 },
   ];
 
-  const [displayedProducts, setDisplayedProducts] = useState(products.slice(0, 6));
+  const [displayedProducts, setDisplayedProducts] = useState(products);
 
-
-  // lấy 6 sản phẩm ngẫu nhiên
-  const getRandomProducts = () => {
-    const shuffled = [...products].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 6);
-  };
 
   const handleShowMore = () => {
-    const newProducts = getRandomProducts();
-    setDisplayedProducts(prev => [...prev, ...newProducts]); // thêm 6 sản phẩm mới vào danh sách cũ
+    setDisplayedProducts(prev => [...prev, ...products]); 
   };
 
   return (

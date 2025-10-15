@@ -13,6 +13,10 @@ const Header = ()=>{
     const handleCart = ()=>{
         router.push("/cart")
     }
+
+    const handlSearch =()=>{
+        router.push("/search")
+    }
 return(
     <div id="header">
             <button className="logo" onClick={handleBackHome}>
@@ -31,7 +35,8 @@ return(
 
             <div className="search">
                 <input type="text" placeholder="Search"/>
-                <svg className="icon-search" width="25" height="16" viewBox="0 0 25 27" fill="none"
+                <button onClick={()=>handlSearch()}>
+ <svg className="icon-search" width="25" height="16" viewBox="0 0 25 27" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M11.9198 25.588C5.34936 25.588 0 19.8623 0 12.8296C0 5.79698 5.34936 0.0712891 11.9198 0.0712891C18.4902 0.0712891 23.8395 5.79698 23.8395 12.8296C23.8395 19.8623 18.4902 25.588 11.9198 25.588ZM11.9198 1.93836C6.30294 1.93836 1.74436 6.83009 1.74436 12.8296C1.74436 18.8291 6.30294 23.7209 11.9198 23.7209C17.5366 23.7209 22.0952 18.8291 22.0952 12.8296C22.0952 6.83009 17.5366 1.93836 11.9198 1.93836Z"
@@ -40,6 +45,8 @@ return(
                         d="M24.1306 26.8319C23.9097 26.8319 23.6887 26.7448 23.5143 26.5581L21.1885 24.0686C20.8512 23.7077 20.8512 23.1102 21.1885 22.7492C21.5257 22.3883 22.0839 22.3883 22.4212 22.7492L24.747 25.2387C25.0842 25.5996 25.0842 26.1971 24.747 26.5581C24.5725 26.7448 24.3516 26.8319 24.1306 26.8319Z"
                         fill="#E31212" />
                 </svg>
+                </button>
+               
             </div>
             <div className="link">
                 <button className="cart" onClick={()=>handleCart()}>
@@ -76,6 +83,7 @@ return(
                                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_8_71"
                                     result="shape" />
                             </filter>
+                            
                         </defs>
                     </svg>
                 </button>
