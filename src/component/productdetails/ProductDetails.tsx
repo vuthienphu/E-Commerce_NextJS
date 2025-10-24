@@ -3,23 +3,31 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import './css/productdetails.css';
+import useSWR from 'swr';
+import { Product } from '@/type/product';
 import { CartItem } from "@/type/cart";
 interface Prop{
-  src?:string;
-    name?:string;
-   size?:string;
-   price?:string;
-   priceNotSell?: string;
-   rateSell?:string;
-   countRate?:number
+  id:string;
 }
 
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-const ProductDetails = ({src,name,size,price,priceNotSell,rateSell,countRate}:Prop) =>{
+const ProductDetails = ({id}:Prop) =>{
+const { data, error, isLoading } = useSWR<Product>(
+    id ? `http://127.0.0.1:8000/api/products/${id}` : null,
+    fetcher
+  )
 
+
+
+  console.log('✅ data nhận được:', data)
 const[quantity,setQuantity] = useState<number>(1);
 const router = useRouter();
+
+  if (isLoading) return <p>Đang tải...</p>
+  if (error) return <p>Lỗi khi tải dữ liệu ❌</p>
+  if (!data) return <p>Không tìm thấy sản phẩm</p>
 
 const handleMinus = (quantity:number)=>{
   if(quantity<=1){
@@ -31,7 +39,7 @@ setQuantity(quantity-1);
 const handleAdd = (quantity:number)=>{
 setQuantity(quantity+1);
 }
-
+/*
 const handleBuyNow = () => {
     // Gói dữ liệu cần truyền
     const query = new URLSearchParams({
@@ -67,17 +75,18 @@ const handleBuyNow = () => {
     alert("✅ Sản phẩm đã được thêm vào giỏ hàng!");
     console.log(cart);
   };
+  */
 return(
   <div className="container">
     <div className="productdetails">
-      {src && <Image src={src} alt={name || ''} className="img" width={315} height={344} />}
+      <img className="img" src={data.image_url} alt={data.name} />
 <div className="info-product">
- <h2>{name} . {size}</h2>
-  <p className="mt-12">⭐⭐⭐⭐⭐ {countRate} Rating</p>
-      <p className="price mt-12">{price}</p>
+ <h2>{data.name} . {data.size}</h2>
+  <p className="mt-12">⭐⭐⭐⭐⭐ {data.countRate} Rating</p>
+      <p className="price mt-12">{data.original_price}</p>
     <div className="original-price">
-      <p><s>{rateSell}</s></p>
-      <p className="ml-24">{priceNotSell}</p>
+      <p><s>{data.discount_percent}</s></p>
+      <p className="ml-24">{data.original_price}</p>
     </div>
      <div className="quantity">
       <p>Quantity</p>
@@ -86,8 +95,8 @@ return(
       <button onClick={()=>handleAdd(quantity)}>+</button>
      </div>
      <div className="btn-group">
-      <button className="btn-buy" onClick={()=>handleBuyNow()}>Buy Now</button>
-      <button className="ml-24 btn-cart" onClick={()=>handleAddToCart()}>Add To Cart</button>
+      <button className="btn-buy">Buy Now</button>
+      <button className="ml-24 btn-cart">Add To Cart</button>
      </div>
 </div>
      </div>

@@ -1,33 +1,42 @@
-'use client'
-import { useState } from 'react';
+'use client';
+import { useState, useEffect } from 'react';
+import useSWR from 'swr';
 import Image from 'next/image';
 import Link from 'next/link';
 import './css/sellproducts.css';
-import aophong from './img/aophong.webp';
 import danhgia from './img/—Pngtree—5 star rating icon reviews_12584719.jpg';
+import { Product } from '@/type/product';
+import ProductDetails from '../productdetails/ProductDetails';
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const SellProducts = () => {
-  const products = [
-    { name: 'Polo Shirt for men', size: 'Large size...', price: 'Rs.999', priceNotSell: '2000', rateSell: '-50%', countRate: 120 },
-    { name: 'T-shirt Classic', size: 'Medium size...', price: 'Rs.899', priceNotSell: '1800', rateSell: '-50%', countRate: 95 },
-    { name: 'Denim Jacket', size: 'XL size...', price: 'Rs.1599', priceNotSell: '3000', rateSell: '-47%', countRate: 180 },
-    { name: 'Sneakers White', size: '42 EU', price: 'Rs.1999', priceNotSell: '3500', rateSell: '-43%', countRate: 210 },
-    { name: 'Hoodie Oversize', size: 'L size...', price: 'Rs.1299', priceNotSell: '2500', rateSell: '-48%', countRate: 160 },
-    { name: 'Formal Pants', size: '32 size...', price: 'Rs.1199', priceNotSell: '2000', rateSell: '-40%', countRate: 70 },
-    { name: 'Watch', size: 'Standard', price: 'Rs.2599', priceNotSell: '4000', rateSell: '-35%', countRate: 190 },
-    { name: 'Cap', size: 'Adjustable', price: 'Rs.499', priceNotSell: '900', rateSell: '-45%', countRate: 130 },
-    { name: 'Socks Pack', size: 'Free size', price: 'Rs.299', priceNotSell: '600', rateSell: '-50%', countRate: 60 },
-    { name: 'Leather Belt', size: 'Standard', price: 'Rs.699', priceNotSell: '1200', rateSell: '-42%', countRate: 88 },
-    { name: 'Jeans Slim Fit', size: '30 size...', price: 'Rs.1399', priceNotSell: '2200', rateSell: '-36%', countRate: 150 },
-    { name: 'Shirt Formal', size: 'M size...', price: 'Rs.999', priceNotSell: '1700', rateSell: '-41%', countRate: 102 },
-  ];
+  const { data, error, isLoading } = useSWR<Product[]>(
+    'http://127.0.0.1:8000/api/products',
+    fetcher
+  );
 
-  const [displayedProducts, setDisplayedProducts] = useState(products);
 
+  const [visibleProducts, setVisibleProducts] = useState<Product[]>([]);
+  const [showCount, setShowCount] = useState<number>(6); // ban đầu hiển thị 6 sản phẩm
+
+  // khi data thay đổi (fetch xong) thì cập nhật visibleProducts
+  useEffect(() => {
+    if (data) {
+      setVisibleProducts(data.slice(0, showCount));
+    }
+  }, [data, showCount]);
+
+  if (isLoading) return <p>Đang tải...</p>;
+  if (error) return <p>Lỗi khi tải dữ liệu ❌</p>;
+  if (!data) return <p>Không có dữ liệu.</p>;
 
   const handleShowMore = () => {
-    setDisplayedProducts(prev => [...prev, ...products]); 
+    // mỗi lần bấm hiện thêm 4 sản phẩm
+    setShowCount((prev) => prev + 6);
   };
+
+  
 
   return (
     <div className="sell-products">
@@ -35,55 +44,37 @@ const SellProducts = () => {
       <div className="line"></div>
 
       <div className="sell-product-list">
-        {displayedProducts.map((item, index) => (
-          <div key={index} className="sell-product-item">
-           <Link
-              href={{
-                pathname: '/products',
-                query: {
-                  src:'/img/aophong.webp',
-                  name: item.name,
-                  size: item.size,
-                  price: item.price,
-                  priceNotSell: item.priceNotSell,
-                  rateSell: item.rateSell,
-                  countRate: item.countRate,
-                },
-              }}
-            >
-              <Image className="img-shirt" src={aophong} alt="Áo" />
+        {visibleProducts.map((item) => (
+          <div key={item.id} className="sell-product-item">
+<Link href={`/products/${item.id}`}>
+            <img className="img" src={item.image_url} alt={item.name} />
             </Link>
-           <Link href={{
-                pathname: '/products',
-                query: {
-                  src:'/img/aophong.webp',
-                  name: item.name,
-                  size: item.size,
-                  price: item.price,
-                  priceNotSell: item.priceNotSell,
-                  rateSell: item.rateSell,
-                  countRate: item.countRate,
-                },
-              }}>
-           <span className="info">{item.name}</span>
-           </Link>
-            <span className="size">{item.size}</span>
-            <span className="price">{item.price}</span>
+        <Link href={`/products/${item.id}`}>   
+        <span className="info">{item.name}</span>
+        </Link> 
+            <span className="size">Size: {item.size}</span>
+            <span className="price">
+              ${item.original_price - (item.original_price * item.discount_percent) / 100}
+            </span>
             <div className="sell-info">
-              <span><s>{item.priceNotSell}</s></span>
-              <span className="rate-sell">{item.rateSell}</span>
+              <span>
+                <s>{item.original_price}</s>
+              </span>
+              <span className="rate-sell ml-8">{item.discount_percent}%</span>
             </div>
             <div className="rating-info">
-              <Image className="img-rating" src={danhgia} alt="Danh gia" />
+              <Image className="img-rating" src={danhgia} alt="Đánh giá" />
               <span className="count-rating">{item.countRate}</span>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="btn-show-more">
-        <button onClick={handleShowMore}>Show more</button>
-      </div>
+      {visibleProducts.length < data.length && (
+        <div className="btn-show-more">
+          <button onClick={handleShowMore}>Show more</button>
+        </div>
+      )}
     </div>
   );
 };

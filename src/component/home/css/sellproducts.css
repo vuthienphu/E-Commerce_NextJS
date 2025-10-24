@@ -36,7 +36,7 @@ color: red;
 font-size: 20px;
 }
 
-.img-shirt{
+.img{
     width: 120px;
     height: 158px;
 }
@@ -58,4 +58,8 @@ font-size: 20px;
     background-color: #D9D9D9;
     color: red;
      border-image: linear-gradient(to right, blue, red) 1;
+}
+
+.ml-8{
+  margin-left: 8px;
 }

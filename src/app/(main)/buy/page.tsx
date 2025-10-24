@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import { useSearchParams,useRouter } from "next/navigation";
 import { useState } from "react";
 import './css/buy.css'; // bạn tạo file CSS riêng cho trang này

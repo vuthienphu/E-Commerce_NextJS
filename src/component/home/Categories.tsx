@@ -1,33 +1,46 @@
-import Image from 'next/image';
-import moblie from './img/shopping.webp';
+"use client";
+
+import React, { useEffect, useState } from 'react';
 import './css/categories.css';
 
-const Categories = () => {
-const categories = [
-    {name:'MOBILES',image:moblie},
-    {name:'MEN',image:moblie},
-      {name:'CLOTHING',image:moblie},
-       {name:'LAPTOPS',image:moblie},
-        {name:'FAN',image:moblie},
-         {name:'SPEAKERS',image:moblie},
-          {name:'GARDEN',image:moblie},
-          {name:'LAUNDRY',image:moblie},
-          {name:'WHATCHES',image:moblie},
-          {name:'SOLAR',image:moblie},
-          {name:'KITCHEN',image:moblie},
-          {name:'BOOKS',image:moblie},
+interface Category {
+  id: number;
+  name: string;
+  description: string;
+  image_url: string;
+  created_at: string;
+  updated_at: string;
+}
 
-]
+
+const Categories = () => {
+const [categories, setCategories] = useState<Category[]>([]);
+
+ useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/category");
+        const data = await res.json();
+        setCategories(data);
+      } catch (error) {
+        console.error("Lỗi tải danh mục:", error);
+      } finally {
+        //set
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
 return(
     <div className="categories">
         <h2>Categories</h2>
         <div className="line"></div>
-        <div className="category-list">
+       <div className="category-list">
 {
-    categories.map((item,index) => (
-    <div key={index} className="category-item">
-        <div><Image src={moblie} alt={item.name} className='image'/></div>
+    categories.map((item) => (
+    <div key={item.id} className="category-item">
+        <div><img src={item.image_url} alt={item.name} className="image" /></div>
         <a href='#'>{item.name}</a>
         </div>
         ))
