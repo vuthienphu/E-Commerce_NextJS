@@ -81,12 +81,13 @@ return(
     <div className="productdetails">
       <img className="img" src={data.image_url} alt={data.name} />
 <div className="info-product">
- <h2>{data.name} . {data.size}</h2>
+ <h2>{data.name}</h2>
+ <h2>Size: {data.size}</h2>
   <p className="mt-12">⭐⭐⭐⭐⭐ {data.countRate} Rating</p>
-      <p className="price mt-12">{data.original_price}</p>
+      <p className="price mt-12">${data.original_price-data.original_price*data.discount_percent/100}</p>
     <div className="original-price">
-      <p><s>{data.discount_percent}</s></p>
-      <p className="ml-24">{data.original_price}</p>
+      <p><s>{data.original_price}</s></p>
+      <p className="ml-24">{data.discount_percent}%</p>
     </div>
      <div className="quantity">
       <p>Quantity</p>

@@ -1,10 +1,12 @@
 'use client'
 import { useRouter } from 'next/navigation';
-import Link from 'next/link'
+import { useState } from 'react';
+import Link from 'next/link';
 import './css/header.css';
 
 
 const Header = ()=>{
+const [keyword,setkeyword] = useState('');
     const router = useRouter();
     const handleBackHome = ()=>{
         router.push("/");
@@ -15,8 +17,9 @@ const Header = ()=>{
     }
 
     const handlSearch =()=>{
-        router.push("/search")
+        router.push(`/search?keyword=${keyword}`);
     }
+
 return(
     <div id="header">
             <button className="logo" onClick={handleBackHome}>
@@ -34,7 +37,11 @@ return(
             </button>
 
             <div className="search">
-                <input type="text" placeholder="Search"/>
+                <input type="text" value={keyword}  onChange={(e) => setkeyword(e.target.value)} placeholder="Search" onKeyDown={(e) => {
+        if(e.key === 'Enter') {
+            handlSearch();
+        }
+    }}/>
                 <button onClick={()=>handlSearch()}>
  <svg className="icon-search" width="25" height="16" viewBox="0 0 25 27" fill="none"
                     xmlns="http://www.w3.org/2000/svg">

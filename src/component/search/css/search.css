@@ -309,3 +309,12 @@
 color: red;
 font-size: 20px;
 }
+
+.img{
+    width:120px;
+    height: 158px;
+}
+
+.ml-8{
+  margin-left: 8px;
+}
