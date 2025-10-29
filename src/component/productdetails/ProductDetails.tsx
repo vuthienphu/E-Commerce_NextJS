@@ -1,11 +1,9 @@
 'use client'
 import Image from "next/image";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import './css/productdetails.css';
 import useSWR from 'swr';
 import { Product } from '@/type/product';
-import { CartItem } from "@/type/cart";
 interface Prop{
   id:string;
 }
@@ -23,7 +21,6 @@ const { data, error, isLoading } = useSWR<Product>(
 
   console.log('✅ data nhận được:', data)
 const[quantity,setQuantity] = useState<number>(1);
-const router = useRouter();
 
   if (isLoading) return <p>Đang tải...</p>
   if (error) return <p>Lỗi khi tải dữ liệu ❌</p>
@@ -79,7 +76,7 @@ const handleBuyNow = () => {
 return(
   <div className="container">
     <div className="productdetails">
-      <img className="img" src={data.image_url} alt={data.name} />
+      <Image className="img" src={data.image_url} alt={data.name} width={316} height={344} />
 <div className="info-product">
  <h2>{data.name}</h2>
  <h2>Size: {data.size}</h2>

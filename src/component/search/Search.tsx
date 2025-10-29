@@ -125,7 +125,7 @@ function handleSizeChange(size: string) {
         {products.map((item) => (
           <div key={item.id} className="sell-product-item">
            <Link href={`/products/${item.id}`}>
-             <img src={item.image_url} alt={item.name} className='img'/>
+             <Image src={item.image_url} alt={item.name} width={120} height={158} />
             </Link>
            <Link href={`/products/${item.id}`}>
            <span className="info">{item.name}</span>
@@ -137,7 +137,7 @@ function handleSizeChange(size: string) {
               <span className="rate-sell ml-8">{item.discount_percent}%</span>
             </div>
             <div className="rating-info">
-              <Image className="img-rating"  src="/img/—Pngtree—5 star rating icon reviews_12584719.jpg" alt="Danh gia"  width={68} height={16}/>
+             <span>⭐⭐⭐⭐⭐</span>
               <span className="count-rating">{item.countRate}</span>
             </div>
           </div>

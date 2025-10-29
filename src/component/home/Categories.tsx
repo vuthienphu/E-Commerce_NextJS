@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import './css/categories.css';
 import { Category } from '@/type/category';
+import Image from 'next/image';
 
 
 const Categories = () => {
@@ -32,7 +33,7 @@ return(
 {
     categories.map((item) => (
     <div key={item.id} className="category-item">
-        <div><img src={item.image_url} alt={item.name} className="image" /></div>
+        <div><Image src={item.image_url} alt={item.name}  width={100} height={100}/></div>
         <a href='#'>{item.name}</a>
         </div>
         ))

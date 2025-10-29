@@ -4,9 +4,7 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import Link from 'next/link';
 import './css/sellproducts.css';
-import danhgia from './img/—Pngtree—5 star rating icon reviews_12584719.jpg';
 import { Product } from '@/type/product';
-import ProductDetails from '../productdetails/ProductDetails';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -47,7 +45,7 @@ const SellProducts = () => {
         {visibleProducts.map((item) => (
           <div key={item.id} className="sell-product-item">
 <Link href={`/products/${item.id}`}>
-            <img className="img" src={item.image_url} alt={item.name} />
+            <Image className="img" src={item.image_url} alt={item.name}  width={300} height={300} />
             </Link>
         <Link href={`/products/${item.id}`}>   
         <span className="info">{item.name}</span>
@@ -63,7 +61,7 @@ const SellProducts = () => {
               <span className="rate-sell ml-8">{item.discount_percent}%</span>
             </div>
             <div className="rating-info">
-              <Image className="img-rating" src={danhgia} alt="Đánh giá" />
+             <span>⭐⭐⭐⭐⭐</span>
               <span className="count-rating">{item.countRate}</span>
             </div>
           </div>
