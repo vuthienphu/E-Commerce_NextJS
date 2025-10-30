@@ -7,9 +7,9 @@ export default function FilterSection({ title, options, selectedValues, onChange
   return (
     <div className="filter-section">
       <h3>{title}</h3>
-      <ul>
+      <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
         {options.map((opt, i) => (
-          <li key={i}>
+          <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <input 
               type="checkbox"
               checked={selectedValues.includes(opt)}
