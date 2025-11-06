@@ -13,7 +13,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const ProductDetails = ({id}:Prop) =>{
 const { data, error, isLoading } = useSWR<Product>(
-    id ? `http://127.0.0.1:8000/api/products/${id}` : null,
+    id ? `http://149.28.159.177/api/products/${id}` : null,
     fetcher
   )
 
@@ -76,7 +76,7 @@ const handleBuyNow = () => {
 return(
   <div className="container">
     <div className="productdetails">
-      <Image className="img" src={data.image_url} alt={data.name} width={316} height={344} />
+      <Image className="img" src={data.image_path} alt={data.name} width={316} height={344} />
 <div className="info-product">
  <h2>{data.name}</h2>
  <h2>Size: {data.size}</h2>

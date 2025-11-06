@@ -10,7 +10,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const SellProducts = () => {
   const { data, error, isLoading } = useSWR<Product[]>(
-    'http://127.0.0.1:8000/api/products',
+    'http://149.28.159.177/api/products',
     fetcher
   );
 
@@ -44,7 +44,7 @@ const SellProducts = () => {
             <div className={styles['img-wrapper']}>
               <Link href={`/products/${item.id}`}>
                 <Image
-                  src={item.image_url}
+                  src={item.image_path}
                   alt={item.name}
                   fill
                   style={{ objectFit: 'contain' }}

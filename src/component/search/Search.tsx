@@ -46,7 +46,7 @@ export default function Search({ keyword }: Prop) {
     error: productError,
     isLoading: productLoading,
   } = useSWR<Product[]>(
-    `http://127.0.0.1:8000/api/search?${queryString}`,
+    `http://149.28.159.177/api/search?${queryString}`,
     fetcher
   );
 
@@ -54,7 +54,7 @@ export default function Search({ keyword }: Prop) {
     data: categories,
     error: categoryError,
     isLoading: categoryLoading,
-  } = useSWR<Category[]>('http://127.0.0.1:8000/api/category', fetcher);
+  } = useSWR<Category[]>('http://149.28.159.177/api/category', fetcher);
 
   if (productLoading) return <p>Đang tải...</p>;
   if (productError) return <p>Lỗi khi tải dữ liệu ❌</p>;
@@ -136,7 +136,7 @@ export default function Search({ keyword }: Prop) {
             <div key={item.id} className={styles['sell-product-item']}>
               <Link href={`/products/${item.id}`}>
                 <Image
-                  src={item.image_url}
+                  src={item.image_path}
                   alt={item.name}
                   width={120}
                   height={158}

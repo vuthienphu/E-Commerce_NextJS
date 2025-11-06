@@ -12,7 +12,7 @@ const [categories, setCategories] = useState<Category[]>([]);
  useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/category");
+        const res = await fetch("http://149.28.159.177/api/category");
         const data = await res.json();
         setCategories(data);
       } catch (error) {
@@ -33,7 +33,7 @@ return(
 {
     categories.map((item) => (
     <div key={item.id} className="category-item">
-        <div><Image src={item.image_url} alt={item.name}  width={100} height={100}/></div>
+        <div><Image src={item.image_path} alt={item.name}  width={100} height={100}/></div>
         <a href='#'>{item.name}</a>
         </div>
         ))

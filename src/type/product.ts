@@ -7,6 +7,6 @@ export interface Product {
   discount_percent:number;
   quantity:number;
   category_id:number;
-  image_url:string;
+  image_path:string;
   countRate:number;
 }
