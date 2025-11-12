@@ -12,7 +12,7 @@ const [categories, setCategories] = useState<Category[]>([]);
  useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://149.28.159.177/api/category");
+        const res = await fetch("http://127.0.0.1:8000/api/category");
         const data = await res.json();
         setCategories(data);
       } catch (error) {

@@ -13,7 +13,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const ProductDetails = ({id}:Prop) =>{
 const { data, error, isLoading } = useSWR<Product>(
-    id ? `http://149.28.159.177/api/products/${id}` : null,
+    id ? `http://127.0.0.1:8000/api/products/${id}` : null,
     fetcher
   )
 

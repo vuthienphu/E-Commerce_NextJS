@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-   images: {
-    domains: ['127.0.0.1', 'localhost'],
+images: {
+    domains: ['127.0.0.1', '149.28.159.177'],
   },
 };
 

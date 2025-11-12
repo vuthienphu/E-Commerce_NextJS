@@ -10,7 +10,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const SellProducts = () => {
   const { data, error, isLoading } = useSWR<Product[]>(
-    'http://149.28.159.177/api/products',
+    'http://127.0.0.1:8000/api/products',
     fetcher
   );
 

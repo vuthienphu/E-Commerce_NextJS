@@ -46,7 +46,7 @@ export default function Search({ keyword }: Prop) {
     error: productError,
     isLoading: productLoading,
   } = useSWR<Product[]>(
-    `http://149.28.159.177/api/search?${queryString}`,
+    `http://127.0.0.1:8000/api/search?${queryString}`,
     fetcher
   );
 
